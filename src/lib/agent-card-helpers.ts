@@ -2,7 +2,7 @@
  * Helpers for agent card display — extracted for testability.
  */
 
-/** Strip provider prefix from model ID: "anthropic/claude-opus-4-5" → "claude-opus-4-5" */
+/** Strip provider prefix from model ID: "anthropic/claude-opus-4-6" → "claude-opus-4-6" */
 export function formatModelName(config: any): string | null {
   const raw = config?.model?.primary
   const primary = typeof raw === 'string' ? raw : raw?.primary

@@ -135,7 +135,7 @@ export const AGENT_TEMPLATES: AgentTemplate[] = [
     toolCount: 23,
     config: {
       model: {
-        primary: 'anthropic/claude-opus-4-5',
+        primary: 'anthropic/claude-opus-4-6',
         fallbacks: OPUS_FALLBACKS,
       },
       identity: {

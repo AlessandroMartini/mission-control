@@ -3,8 +3,8 @@ import { formatModelName, buildTaskStatParts, extractWsHost } from '@/lib/agent-
 
 describe('formatModelName', () => {
   it('strips provider prefix from model ID', () => {
-    expect(formatModelName({ model: { primary: 'anthropic/claude-opus-4-5' } }))
-      .toBe('claude-opus-4-5')
+    expect(formatModelName({ model: { primary: 'anthropic/claude-opus-4-6' } }))
+      .toBe('claude-opus-4-6')
   })
 
   it('returns model name when no prefix', () => {

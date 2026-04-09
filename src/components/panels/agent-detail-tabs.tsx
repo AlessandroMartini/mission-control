@@ -817,7 +817,7 @@ const MODEL_TIER_LABELS: Record<string, string> = {
 }
 
 const DEFAULT_MODEL_BY_TIER: Record<'opus' | 'sonnet' | 'haiku', string> = {
-  opus: 'anthropic/claude-opus-4-5',
+  opus: 'anthropic/claude-opus-4-6',
   sonnet: 'anthropic/claude-sonnet-4-20250514',
   haiku: 'anthropic/claude-haiku-4-5',
 }
