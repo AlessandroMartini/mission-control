@@ -403,6 +403,26 @@ async function fetchClawdHubSkill(slug: string): Promise<{ content: string; hash
 }
 
 async function fetchSkillsShSkill(slug: string): Promise<{ content: string }> {
+  // skills.sh doesn't serve raw content via API. Skills are hosted in GitHub
+  // repos. The slug format is "{owner}/{repo}/{skillId}" (e.g.
+  // "flutter/skills/flutter-building-layouts"). Extract the source repo and
+  // skill name, then fetch SKILL.md from GitHub raw.
+  const parts = slug.split('/')
+  if (parts.length >= 3) {
+    const owner = parts[0]
+    const repo = parts[1]
+    const skillId = parts.slice(2).join('/')
+    // Try main branch first, then master
+    for (const branch of ['main', 'master']) {
+      const url = `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/skills/${skillId}/SKILL.md`
+      const res = await fetchWithTimeout(url)
+      if (res.ok) {
+        const content = await res.text()
+        return { content }
+      }
+    }
+  }
+  // Fallback: try the legacy API endpoint (unlikely to work)
   const url = `${SKILLS_SH_API}/skills/${encodeURIComponent(slug)}/raw`
   const res = await fetchWithTimeout(url)
   if (!res.ok) throw new Error(`skills.sh fetch failed (${res.status})`)
